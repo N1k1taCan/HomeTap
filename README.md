@@ -18,7 +18,7 @@ To get started with this project:
 ### Tests
 This project contains the following tests:
 
-1. Default Interest Rate Value
+1. Default Interest Rate Value: Verifies that the default interest rate is displayed correctly on the page.
 2. ...
 These tests can be found in the cypress/e2e/ directory.
 

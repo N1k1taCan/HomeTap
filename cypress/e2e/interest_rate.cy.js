@@ -7,6 +7,20 @@ describe('Interest Rate Feature Tests', () => {
   
     it('Default interest rate is visible and correct', () => {
      
-      MortgageCalculatorPage.verifyInterestRateDefaultValue('6.717');
+      MortgageCalculatorPage.verifyInterestRateValue('6.717');
     });
-  });
+
+    it('Interest rate should revert to default value after page reload', () => {       
+        const defaultRate = '6.717';         
+        const newRate = '5.5';
+
+        MortgageCalculatorPage.setInterestRate(newRate);    
+        
+        MortgageCalculatorPage.verifyInterestRateValue(newRate);    
+       
+        MortgageCalculatorPage.reloadPage();    
+      
+        MortgageCalculatorPage.verifyInterestRateValue(defaultRate);
+      });
+    });
+  

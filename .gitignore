@@ -8,4 +8,4 @@ cypress/screenshots/
 cypress/reports/
 
 
-.envg
+.env
