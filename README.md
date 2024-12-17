@@ -6,6 +6,8 @@ This project contains end-to-end tests for the mortgage calculator on Zillow usi
 
 To get started with this project:
 
+Before setting up the project, you need to have **Node.js** and **npm** (Node Package Manager) installed on your machine!!!
+
 1. Clone the repository:
    git clone https://github.com/N1k1taCan/HomeTap.git
 2. Install dependencies: 
