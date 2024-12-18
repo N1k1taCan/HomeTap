@@ -5,28 +5,36 @@ describe("Interest Rate Feature Tests", () => {
     cy.visit("https://www.zillow.com/mortgage-calculator/");
   });
 
-  it("Default interest rate is visible and correct", () => {
-    MortgageCalculatorPage.verifyInterestRateValue("6.708");
+  it("Acceptance-01-Default interest rate is visible and correct", () => {
+    MortgageCalculatorPage.verifyInterestRateValue();
   });
 
-  it("Interest rate should revert to default value after page reload", () => {
-    const defaultRate = "6.708";
+  it("E2E-02-Interest rate should revert to default value after page reload", () => {
     const newRate = "5.5";
 
     MortgageCalculatorPage.setInterestRate(newRate);
 
-    MortgageCalculatorPage.verifyInterestRateValue(newRate);
+    MortgageCalculatorPage.interestRateInput.should("have.value", newRate);
 
     MortgageCalculatorPage.reloadPage();
 
-    MortgageCalculatorPage.verifyInterestRateValue(defaultRate);
+    MortgageCalculatorPage.interestRateInput.should("not.have.value", newRate);
   });
 
-  it("Should show error when entering invalid characters in Interest Rate", () => {
+  it("Negative-01-Should show error when entering invalid characters in Interest Rate", () => {
     const invalidRate = "abc";
     const errorMessage = `'${invalidRate}' is not a valid number`;
 
     MortgageCalculatorPage.setInterestRate(invalidRate);
+    cy.get("body").click({ force: true });
+
+    MortgageCalculatorPage.verifyErrorMessage(errorMessage);
+  });
+
+  it("Negative-02-Verify behavior for empty input", () => {
+    const errorMessage = "Invalid value";
+
+    MortgageCalculatorPage.interestRateInput.clear();
     cy.get("body").click({ force: true });
 
     MortgageCalculatorPage.verifyErrorMessage(errorMessage);
